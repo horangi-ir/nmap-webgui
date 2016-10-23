@@ -37,3 +37,5 @@
     # add a user, start the web app in debug and login
     $ python manage.py adduser <username> <email>
     $ python manage.py runserver
+
+    Default run location is 127.0.0.1:8080
