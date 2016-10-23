@@ -1,3 +1,5 @@
+    *** Apologies, I had misread the challenge as just a example page to intepret data to d3.js***
+
     For a list of features and changes, refer to Wiki
 
     # install packages
