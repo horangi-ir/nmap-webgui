@@ -1,7 +1,7 @@
 from nmapui import app
 from nmapui.models import NmapTask
 from nmapui.tasks import celery_nmap_scan
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
 from flask.ext.login import login_required, current_user
 from celery.states import READY_STATES
 import json
@@ -18,7 +18,6 @@ def nmap_index():
 @login_required
 def nmap_scan():
     return render_template('nmap_scans.html')
-
 
 @appmodule.route('/tasks', methods=['GET', 'POST'])
 @login_required
@@ -83,11 +82,22 @@ def nmap_report(report_id):
         _report = NmapTask.get_report(task_id=report_id)
     return render_template('nmap_report.html', report=_report)
 
+@appmodule.route('/visualise/<report_id>')
+@login_required
+def nmap_visualise(report_id):
+    _report = None
+    if report_id is not None:
+        _report = NmapTask.get_report(task_id=report_id)
+    return render_template('nmap_visualise.html', report=_report)
+
+
 
 @appmodule.route('/compare')
 @login_required
 def nmap_compare():
-    return render_template('nmap_compare.html')
+    _nmap_tasks = NmapTask.find(user_id=current_user.id)
+    _report = NmapTask.get_all_reports(_nmap_tasks)
+    return render_template('nmap_compare.html', reports=_report)
 
 
 @appmodule.route('/test', methods=['GET', 'POST'])

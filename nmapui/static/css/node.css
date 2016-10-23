@@ -1,0 +1,27 @@
+.link {
+	stroke: #aaa;
+}
+
+.node text {
+    stroke:#333;
+    cursos:pointer;
+}
+
+.node circle{
+    stroke:#fff;
+    stroke-width:3px;
+    fill:#555;
+}
+
+.node circleUp{
+    stroke:#fff;
+    stroke-width:3px;
+    fill:#008000;
+}
+
+.node circleDown{
+    stroke:#fff;
+    stroke-width:3px;
+    fill:#f00;
+}
+

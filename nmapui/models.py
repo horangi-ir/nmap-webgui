@@ -93,11 +93,34 @@ class NmapTask(object):
         if isinstance(task_id, str) or isinstance(task_id, unicode):
             try:
                 _resultdict = celery_pipe.AsyncResult(task_id).result
+                print "report"
+                print(task_id)
                 _resultxml = _resultdict['report']
                 _report = NmapParser.parse_fromstring(_resultxml)
             except NmapParserException:
                 pass
         return _report
+
+    @classmethod
+    def get_all_reports(cls, tasks=None):
+        taskList = []
+        try:
+            if tasks is not None:
+                for a in tasks:
+                    a = str(a)
+                    if isinstance(a, str) or isinstance(a, unicode):
+                        try:
+                            _resultdict = celery_pipe.AsyncResult(a).result
+                            _resultxml = _resultdict['report']
+                            _reportA = NmapParser.parse_fromstring(_resultxml)
+                            taskList.append(_reportA)
+                        except NmapParserException:
+                            pass
+        except NmapParserException:
+            pass
+        print taskList
+        print "Printed reports"
+        return taskList
 
     @classmethod
     def add(cls, user_id=None, task_id=None):
