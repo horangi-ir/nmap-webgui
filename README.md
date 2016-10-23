@@ -1,3 +1,5 @@
+    For a list of features and changes, refer to Wiki
+
     # install packages
     $ pip install Flask
     $ pip install Flask-Login
