@@ -1,69 +1,31 @@
-# nmap-webgui
-
-## Code status
-
-This webapp is being developped. Basic structure is here, you can launch scan and have nmap scan reports automatically stored but no more so far :p
-
-## Use cases
-nmap-webgui is a multi-user small web application based on flask to enable the user to:
-
-- launch nmap scans (DONE)
-- schedule periodic scans
-- review scan reports
-- diff and compare scan reports
-- display stats of scan reports
-
-nmap-webgui is relying on the following technologies:
-
-- flask
-- celery
-- rabbitmq
-- mongodb
-- python-libnmap
-
-## Dependencies
-
-Following packages need to be installed:
-
-- flask via pip
-- flask-login via pip
-- flask-pymongo via pip
-- flask-scripts via pip (optional)
-- rabbitmq server (no specific config needed)
-- mongodb daemon (to store users data and celery tasks)
-
-##Quick install
-
-This is a draft on how to install and run nmap-webgui:
-
-```bash
-    # install packages in a virtualenv or whatever
+    # install packages
     $ pip install Flask
     $ pip install Flask-Login
     $ pip install Flask-PyMongo
     $ pip install Flask-Script
-    # for celery, ensure you are running chiastic slide (version > 3)
     $ pip install celery
 
-    # install mongodb and rabbitmq (the way you want it)
-    $ yum install mongod
-    $ yum install mongod-server
-    $ yum install rabbitmq-server
+    # install mongodb and rabbitmq
+    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+    $ echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+    $ echo 'deb http://www.rabbitmq.com/debian/ testing main' |
+            sudo tee /etc/apt/sources.list.d/rabbitmq.list
+    $ sudo apt-get update
+    $ sudo apt-get install rabbitmq-server
+    $ sudo apt-get install -y mongodb-org
 
     # start rabbitmq and mongodb
     $ service mongod start
     $ service rabbitmq-server start
 
     # install nmap
-    $ yum install nmap
+    $ sudo apt-get install nmap
 
     # install python-libnmap
-    $ git clone https://github.com/savon-noir/python-libnmap.git
-    $ cd python-libnmap
-    $ python setup.py install
+    $ pip install libnmap
 
     # install the webgui
-    $ git clone https://savon_noir@bitbucket.org/savon_noir/nmap-webgui.git
+    $ git clone https://github.com/limquanheng/nmap-webgui.git
     $ cd nmap-webgui
     $ python setup.py install
 
@@ -73,4 +35,3 @@ This is a draft on how to install and run nmap-webgui:
     # add a user, start the web app in debug and login
     $ python manage.py adduser <username> <email>
     $ python manage.py runserver
-```
