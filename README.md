@@ -41,4 +41,4 @@
     $ python manage.py runserver
 
     Default run location is 127.0.0.1:8080
-    Originally run on python 2.X, on Ubuntu 16.0.4
+    Originally run on python 2.7, on Ubuntu 16.0.4
