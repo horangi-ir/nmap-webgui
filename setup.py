@@ -1,10 +1,10 @@
 from distutils.core import setup
 
 setup(
-    name='nmapui',
+    name='nmapui-d3.js',
     version='0.0.1',
-    author='Ronald Bister',
-    author_email='mini.pelle@gmail.com',
+    author='Quan Heng/Ronald Bister',
+    author_email='limquanheng@gmail.com/mini.pelle@gmail.com',
     packages=['nmapui', 'nmapui.test'],
     url='http://pypi.python.org/pypi/nmapui/',
     license='LICENSE.txt',

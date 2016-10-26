@@ -7,7 +7,7 @@ from nmapui.models import Users
 manager = Manager(app)
 manager.add_command("runserver", Server(use_debugger = True,
                                   use_reloader = True,
-                                  host = '0.0.0.0', port=80))
+                                  host = '127.0.0.1', port=8080))
 
 @manager.command
 #@manager.option('-u', '--username', help='your username')
